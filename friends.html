@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Friends - Nurin Sofea</title>
+    <!-- Google Fonts for that cute, whimsical Canva aesthetic -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Pacifico&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- Global Resets & Typography --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: #fffdf9;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Fixed Navigation Bar linking to separate interfaces */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 10px rgba(224, 150, 190, 0.15);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 12px 20px;
+        }
+
+        .logo {
+            font-family: 'Pacifico', cursive;
+            color: #e06da6;
+            font-size: 1.5rem;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 15px;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: #5181b8;
+            font-weight: 700;
+            font-size: 0.95rem;
+            padding: 8px 14px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        /* Highlight the active sub-interface page style */
+        .nav-links li a.active-page {
+            background-color: #fff0f5;
+            color: #e06da6;
+            border: 1px dashed #e06da6;
+        }
+
+        .nav-links li a:hover {
+            background-color: #fff0f5;
+            color: #e06da6;
+        }
+
+        /* Mobile Hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: #e06da6;
+            border-radius: 2px;
+        }
+
+        /* --- Cursive Moving Text Marquee --- */
+        .marquee-container {
+            position: fixed;
+            top: 55px; /* Sits cleanly right under the navbar */
+            left: 0;
+            width: 100%;
+            background-color: #ffdceb;
+            padding: 6px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            z-index: 999;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .marquee-text {
+            display: inline-block;
+            font-family: 'Pacifico', cursive;
+            font-size: 1.1rem;
+            color: #ba6088;
+            animation: marquee 15s linear infinite;
+            padding-left: 100%;
+        }
+
+        @keyframes marquee {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-100%, 0, 0); }
+        }
+
+        /* --- Section 1: Friends Hero Banner --- */
+        .friends-hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 160px 20px 80px 20px;
+            overflow: hidden;
+        }
+
+        .gif-bg-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('videos/cutegif.gif');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: -2;
+        }
+
+        .friends-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.3);
+            z-index: -1;
+        }
+
+        .friends-title {
+            font-family: 'Pacifico', cursive;
+            font-size: 3.5rem;
+            color: #ff60ad;
+            text-shadow: 3px 3px 0px #fff, -1px -1px 0px #fff, 1px -1px 0px #fff, -1px 1px 0px #fff;
+            margin-bottom: 5px;
+            line-height: 1.2;
+        }
+
+        .friends-subtitle {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.6rem;
+            color: #5181b8;
+            text-shadow: 2px 2px 0px #fff, -1px -1px 0px #fff;
+            margin-bottom: 30px;
+        }
+
+        .center-graphic-wrap {
+            max-width: 420px;
+            width: 100%;
+            margin-top: 15px;
+            filter: drop-shadow(0px 8px 16px rgba(224, 109, 166, 0.25));
+            animation: floatAnimation 4s ease-in-out infinite;
+        }
+
+        .center-graphic-wrap img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        @keyframes floatAnimation {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Bottom Left Audio Anchor Element styling */
+        .audio-trigger-zone {
+            position: absolute;
+            bottom: 30px;
+            left: 30px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 10;
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 8px 16px;
+            border-radius: 30px;
+            box-shadow: 0 4px 12px rgba(224, 109, 166, 0.15);
+            backdrop-filter: blur(4px);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .audio-trigger-zone:hover {
+            transform: scale(1.05);
+        }
+
+        .audio-icon-img {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+        }
+
+        .audio-hint-arrow {
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 700;
+            color: #e06da6;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            animation: pointArrow 1s ease-in-out infinite alternate;
+        }
+
+        @keyframes pointArrow {
+            0% { transform: translateX(0px); }
+            100% { transform: translateX(-6px); }
+        }
+
+        /* --- Section 2: Soft Pink CD Panel --- */
+        .music-panel {
+            background-color: #ffdae0; 
+            padding: 80px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .music-container {
+            max-width: 1100px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 50px;
+        }
+
+        .music-left {
+            flex: 1.2;
+            min-width: 320px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cd-cover-art {
+            width: 100%;
+            max-width: 480px;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 12px 28px rgba(224, 109, 166, 0.2);
+            transition: transform 0.4s ease;
+        }
+
+        .cd-cover-art:hover {
+            transform: scale(1.03) rotate(-1deg);
+        }
+
+        .music-right {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .play-text {
+            font-family: 'Pacifico', cursive;
+            font-size: 2.8rem;
+            color: #ba6088;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.6);
+            margin-bottom: 20px;
+        }
+
+        .play-btn {
+            background-color: #ff60ad;
+            color: white;
+            border: none;
+            width: 75px;
+            height: 75px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 6px 15px rgba(255, 96, 173, 0.4);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-decoration: none;
+        }
+
+        .play-btn svg {
+            width: 30px;
+            height: 30px;
+            fill: white;
+            margin-left: 4px;
+        }
+
+        .play-btn:hover {
+            transform: scale(1.15);
+            background-color: #e04b93;
+            box-shadow: 0 8px 20px rgba(255, 96, 173, 0.6);
+        }
+
+        /* --- Section 3: Friend CD Content Wrap Centerpiece Panel --- */
+        .wrap-panel {
+            background-color: #ffdae0; 
+            padding: 40px 20px 90px 20px; 
+            display: flex;
+            justify-content: center;
+        }
+
+        .wrap-container {
+            max-width: 950px;
+            width: 100%;
+            text-align: justify;
+        }
+
+        .centered-cd-frame {
+            float: left;
+            width: 45%; 
+            max-width: 380px;
+            aspect-ratio: 1 / 1; 
+            margin: 10px 30px 20px 0; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            shape-outside: circle(50%); 
+            border-radius: 50%;
+        }
+
+        .centered-cd-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0px 12px 24px rgba(0,0,0,0.15));
+            animation: spinCD 12s linear infinite;
+        }
+
+        @keyframes spinCD {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .wrap-text-box {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            color: #ba6088; 
+            font-weight: 600;
+            text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.5);
+        }
+
+        .wrap-text-box p {
+            margin-bottom: 18px;
+        }
+
+        /* --- Section 4: Soft Purple Split Highschool Panel --- */
+        .highschool-panel {
+            background-color: #f3e8ff; /* Soft Purple Backdrop */
+            padding: 90px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .highschool-container {
+            max-width: 1100px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .highschool-left {
+            flex: 1.2;
+            min-width: 300px;
+        }
+
+        .highschool-heading {
+            font-family: 'Pacifico', cursive;
+            font-size: 2.8rem;
+            color: #0a192f; /* Dark Navy Heading */
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 0px #fff;
+        }
+
+        .highschool-desc {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: #112240; /* Dark Navy Body Text */
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+
+        .highschool-bullets {
+            list-style: none; 
+        }
+
+        .highschool-bullets li {
+            position: relative;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #112240; /* Dark Navy Bullets Text */
+            font-weight: 600;
+            margin-bottom: 15px;
+            padding-left: 30px;
+        }
+
+        .highschool-bullets li::before {
+            content: "✦";
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #7c3aed; /* Cute purple accent for the star icon */
+            font-size: 1.2rem;
+        }
+
+        .highschool-right {
+            flex: 1;
+            min-width: 320px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Normal Size setup restricting image to exactly 50% relative space container scale */
+        .pol-image-frame {
+            width: 50%; 
+            height: auto;
+            border-radius: 16px;
+            filter: drop-shadow(0 12px 20px rgba(124, 58, 237, 0.15));
+            transition: all 0.4s ease;
+        }
+
+        .pol-image-frame:hover {
+            transform: scale(1.03) translateY(-4px);
+            filter: drop-shadow(0 14px 24px rgba(124, 58, 237, 0.25));
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            background-color: #ffdceb;
+            color: #ba6088;
+            font-weight: bold;
+        }
+
+        /* --- Responsive Structural Styles --- */
+        @media (max-width: 768px) {
+            .marquee-container { top: 60px; }
+            .friends-hero { padding-top: 180px; }
+            
+            .nav-links {
+                position: absolute;
+                top: 60px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 60px);
+                background-color: rgba(255,255,255,0.98);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 25px;
+                transition: 0.3s ease;
+            }
+
+            .nav-links.active { left: 0; }
+            .hamburger { display: flex; }
+            .friends-title { font-size: 2.6rem; }
+            .center-graphic-wrap { max-width: 300px; }
+            
+            .music-container { flex-direction: column; text-align: center; }
+            .cd-cover-art { max-width: 350px; }
+            .play-text { font-size: 2.2rem; }
+
+            .audio-trigger-zone {
+                bottom: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            .audio-trigger-zone:hover {
+                transform: translateX(-50%) scale(1.05);
+            }
+
+            .centered-cd-frame {
+                float: none;
+                width: 75%;
+                margin: 0 auto 30px auto;
+            }
+            .wrap-text-box {
+                text-align: center;
+            }
+
+            .highschool-container {
+                flex-direction: column-reverse; 
+                text-align: center;
+            }
+            .highschool-heading { font-size: 2.3rem; }
+            .highschool-bullets li { text-align: left; }
+            
+            /* Allow it to safely fill mobile blocks properly while holding aspect ratios */
+            .pol-image-frame { width: 65%; } 
+        }
+
+/* --- Section 5: Centered Soft Yellow University Panel --- */
+        .university-panel {
+            background-color: #fef08a; 
+            padding: 90px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .university-container {
+            max-width: 900px; /* narrowed to keep the centered grid perfectly proportioned */
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .university-heading {
+            font-family: 'Pacifico', cursive;
+            font-size: 2.8rem;
+            color: #b45309; 
+            margin-bottom: 45px;
+            text-align: center;
+            text-shadow: 2px 2px 0px #fff;
+        }
+
+        /* Replicating the Red Framed Spanning Layout from 1000198133.jpg */
+        .friends-complex-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: transparent;
+            margin: 0 auto;
+        }
+
+        .friends-complex-table td {
+            border: 3px solid #ef4444; /* Clean Red Line Borders mimicking 1000198133.jpg */
+            padding: 0;
+            vertical-align: top;
+            background-color: #ffffff;
+            overflow: hidden;
+        }
+
+        /* Flexbox wrapper inside cells to group image and description stack tightly */
+        .cell-content {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            min-height: 180px;
+        }
+
+        /* Adjusts heights for fields that span multiple rows dynamically */
+        .tall-content {
+            min-height: 400px;
+        }
+
+        .cell-content img {
+            width: 100%;
+            flex-grow: 1;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .cell-content img:hover {
+            transform: scale(1.02);
+        }
+
+        /* Clean, descriptive styling underneath each friend's photo */
+        .photo-description {
+            background-color: #ffffff;
+            color: #78350f;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-align: center;
+            padding: 10px 8px;
+            border-top: 3px dashed #ffdceb;
+            line-height: 1.3;
+        }
+
+        @media (max-width: 768px) {
+            .university-heading { font-size: 2.3rem; }
+            .cell-content { min-height: 140px; }
+            .tall-content { min-height: 300px; }
+            .photo-description { font-size: 0.8rem; padding: 6px 4px; }
+        }
+
+/* --- Section 6: Soft Brown Appreciation Panel --- */
+        .appreciation-panel {
+            background-color: #f5eae0; /* Cozy Soft Brown Backdrop */
+            padding: 90px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .appreciation-container {
+            max-width: 1000px; /* Widened to match the larger image layout */
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center; 
+            text-align: center;
+        }
+
+        .appreciation-heading {
+            font-family: 'Pacifico', cursive;
+            font-size: 2.8rem;
+            color: #606c38; /* Custom Earthy Matcha Color Font */
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 0px #ffffff;
+            line-height: 1.3;
+        }
+
+        /* Expanded Image Wrapper Frame */
+        .appreciation-image-wrap {
+            max-width: 750px; /* Made much bigger as requested */
+            width: 100%;
+            margin-bottom: 40px;
+            border: 5px solid #ffffff; /* Thicker white canvas frame for the larger size */
+            border-radius: 16px;
+            box-shadow: 0 16px 36px rgba(96, 108, 56, 0.18);
+            overflow: hidden;
+            transition: transform 0.4s ease;
+        }
+
+        .appreciation-image-wrap:hover {
+            transform: scale(1.01) rotate(-0.3deg);
+        }
+
+        .appreciation-image-wrap img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        /* Fallback box style matching the matcha tone if image isn't loaded */
+        .image-placeholder-fallback {
+            padding: 15px 20px;
+            background-color: #dda15e;
+            color: white;
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        /* Centered Bottom Appreciation Text Box formatting */
+        .appreciation-text-box {
+            background-color: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(4px);
+            border-radius: 16px;
+            padding: 30px 35px;
+            border: 2px dashed #606c38; /* Matcha dashed border detail */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+            max-width: 750px; /* Matches the width of your big picture */
+        }
+
+        .appreciation-text-box p {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            color: #4a3728; /* Warm dark brown tone */
+            font-weight: 600;
+            text-align: justify; 
+        }
+
+        @media (max-width: 768px) {
+            .appreciation-heading { font-size: 2.1rem; margin-bottom: 30px; }
+            .appreciation-image-wrap { max-width: 100%; border-width: 3px; }
+            .appreciation-text-box { padding: 20px; }
+            .appreciation-text-box p { font-size: 1rem; line-height: 1.7; }
+        }    
+</style>
+</head>
+<body>
+
+    <!-- Invisible Background Audio Component -->
+    <audio id="bg-music" src="audio/bgaudio.mpeg" loop></audio>
+
+    <!-- Top Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">Nurin's Space</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="family.html">Family</a></li>
+                <li><a href="friends.html" class="active-page">Friends</a></li>
+                <li><a href="education.html">Education</a></li>
+                <li><a href="experience.html">Experience</a></li>
+                <li><a href="hobbies.html">Hobbies</a></li>
+                <li><a href="contact.html">Contact Me</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Moving Text Marquee Section -->
+    <div class="marquee-container">
+        <div class="marquee-text">
+         Nurin Sofea's Space &lt;3 Nurin Sofea's Space &lt;3 Nurin Sofea's Space &lt;3 Nurin Sofea's Space &lt;3 Nurin Sofea's Space &lt;3 Nurin Sofea's Space &lt;3
+        </div>
+    </div>
+
+    <!-- Section 1: Friends Hero Banner -->
+    <header class="friends-hero">
+        <div class="gif-bg-container"></div>
+        <h1 class="friends-title">My Friends</h1>
+        <h2 class="friends-subtitle">Meet the wonderful people who make life special!</h2>
+        <div class="center-graphic-wrap">
+            <img src="images/friendsh2.png" alt="Friends Graphics Asset Panel">
+        </div>
+
+        <!-- Audio Icon Bottom Left Layout Element with Hint Arrow Prompt -->
+        <div class="audio-trigger-zone" id="audio-icon-btn" title="Click to play/pause music!">
+        <div class="audio-hint-arrow">click me!</div>
+        <img src="images/audioicon.png" alt="Audio Play Icon" class="audio-icon-img">
+        </div>
+    </header>
+
+    <!-- Section 2: Soft Pink Music/CD Showcase Panel -->
+    <section class="music-panel">
+        <div class="music-container">
+        <div class="music-left">
+        <img src="images/cdcover.png" alt="CD Cover Album Art" class="cd-cover-art">
+        </div>
+
+        <div class="music-right">
+        <h2 class="play-text">Click here to play!</h2>
+        <a href="#section3" class="play-btn" id="play-music-trigger" aria-label="Play Music Button and Scroll Down">
+        <svg viewBox="0 0 24 24">
+        <path d="M8 5v14l11-7z"/>
+        </svg>
+        </a>
+        </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Friend CD Content Wrap Centerpiece Panel -->
+    <section id="section3" class="wrap-panel">
+        <div class="wrap-container">
+        <div class="centered-cd-frame">
+        <img src="images/friendcd.png" alt="Friend Track Disc Artwork">
+        </div>
+
+            <div class="wrap-text-box">
+                <p>
+                Welcome to the friends menu! Friends are one of the most valuable parts of my life. They have been by my side through both happy and challenging moments, providing support, encouragement, and countless unforgettable memories. I am grateful to have friends who inspire me to become a better person and make my university journey more enjoyable.
+
+                </p>
+                <p>
+                My friends and I enjoy spending time together, whether it is studying for assignments, participating in activities, exploring new places, or simply having conversations that brighten our day. They bring laughter, positivity, and companionship into my life, making even ordinary moments special.
+                </p>
+                <p>
+                Through my friendships, I have learned the importance of trust, respect, teamwork, and understanding. Each friend has a unique personality and perspective that has helped me grow both personally and academically. I truly appreciate the friendships I have built and look forward to creating many more wonderful memories together in the future.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Section 4: Soft Purple Highschool Friends Split Layout Panel -->
+    <section class="highschool-panel">
+        <div class="highschool-container">
+<!-- Left Layout Text Zone (Dark Navy Fonts) -->
+            <div class="highschool-left">
+            <h2 class="highschool-heading">My Highschool friends!!</h2>
+            <p class="highschool-desc">
+            High school was an unforgettable chapter, made infinitely brighter by the amazing friends who walked through it with me. From stressful exam seasons to endless cafeteria laughs, these are the bonds built to last a lifetime!
+            </p>
+                <ul class="highschool-bullets">
+                    <li>The ones who shared secrets, snacks and assignments during late-night study marathons with my best friends Iman and Athirah.</li>
+                    <li>Countless inside jokes during recess adventures that still make us burst into laughter today.</li>
+                    <li>Always cheering each other on through every milestone, graduation and new beginning.</li>
+                    <li>A constant reminder that no matter how far we drift or grow, our roots stay happily connected.</li>
+                </ul>
+            </div>
+
+            <!-- Right Layout Zone with 50% Sized polfriend.png Image -->
+            <div class="highschool-right">
+            <img src="images/polfriend.png" alt="High School Friends Polaroid Portrait" class="pol-image-frame">
+            </div>
+
+        </div>
+    </section>
+
+<!-- Section 5: Soft Yellow University Friends Panel -->
+    <section class="university-panel">
+        <div class="university-container">
+            
+            <h2 class="university-heading">University friends!!!!</h2>
+            
+            <!-- Centered Complex Mosaic Table Grid (Matching layout from 1000198133.jpg with descriptions) -->
+            <table class="friends-complex-table">
+            <!-- Row 1 -->
+            <tr>
+            <td style="width: 25%; height: auto;">
+            <div class="cell-content">
+            <img src="images/friend1.jpg" alt="University Friend 1">
+            <div class="photo-description">These are the friends that got close to me after I joined dancing club.</div>
+                    </div>
+                    </td>
+                    <td colspan="2" style="width: 50%; height: auto;">
+                    <div class="cell-content">
+                    <img src="images/friend2.jpg" alt="University Friend 2">
+                    <div class="photo-description">My theater debut on stage as member of Tegaloka theater club Katarsis at Dewan Perdana, UiTM Merbok.</div>
+                    </div>
+                    </td>
+                    <td rowspan="2" style="width: 30%; height: auto;">
+                    <div class="cell-content tall-content">
+                    <img src="images/friend3.jpg" alt="University Friend 3">
+                    <div class="photo-description">Group picture with modern dance club Katarsis Gravity Groove members in 2025 at Dewan Perdana UiTM Merbok.</div>
+                    </div>
+                    </td>
+                </tr>
+                
+                <!-- Row 2 -->
+                <tr>
+                    <td rowspan="2" style="width: 25%; height: auto;">
+                    <div class="cell-content tall-content">
+                    <img src="images/friend4.jpg" alt="University Friend 4">
+                    <div class="photo-description">Mirror selfie with my best friend Sarah after joining fun run.</div>
+                    </div>
+                    </td>
+                    <td style="width: 25%; height: auto;">
+                    <div class="cell-content">
+                    <img src="images/friend5.jpg" alt="University Friend 5">
+                    <div class="photo-description">Lunch date with my beloved roommates.</div>
+                    </div>
+                    </td>
+                    <td rowspan="2" style="width: 25%; height: auto;">
+                    <div class="cell-content tall-content">
+                    <img src="images/friend6.jpg" alt="University Friend 6">
+                    <div class="photo-description">Mirror selfie with our AJK of Tanggang musical theater.</div>
+                    </div>
+                    </td>
+                </tr>
+                
+                <!-- Row 3 -->
+                <tr>
+                    <td style="width: 25%; height: auto;">
+                    <div class="cell-content">
+                    <img src="images/friend7.jpg" alt="University Friend 7">
+                    <div class="photo-description">A playful picture of me with Najwa in the self-service food truck.</div>
+                    </div>
+                    </td>
+                    <td style="width: 25%; height: auto;">
+                    <div class="cell-content">
+                    <img src="images/friend8.jpg" alt="University Friend 8">
+                    <div class="photo-description">Me and my roommates quick trip to Tanjung Dawai beach.</div>
+                    </div>
+                    </td>
+                </tr>
+                
+                <!-- Row 4 (Added Complex Mosaic Row) -->
+                <tr>
+                    <td colspan="2" style="width: 50%; height: auto;">
+                    <div class="cell-content">
+                    <img src="images/friend10.jpg" alt="University Friend 10">
+                    <div class="photo-description">Celebrating the end of final exams together at Petrosains KLCC!</div>
+                    </div>
+                    </td>
+                    <td style="width: 25%; height: auto;">
+                    <div class="cell-content">
+                    <img src="images/friend11.jpg" alt="University Friend 11">
+                    <div class="photo-description">Me and my groupmates celebrating the end of speaking test!</div>
+                    </div>
+                    </td>
+                    <td style="width: 25%; height: auto;">
+                    <div class="cell-content">
+                    <img src="images/friend12.jpg" alt="University Friend 12">
+                    <div class="photo-description">Celebrating the end of our presentation!</div>
+                    </div>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+    </section>
+<section class="appreciation-panel">
+        <div class="appreciation-container">
+        <h2 class="appreciation-heading">Appreciation to my best friend, Sarah</h2>
+        <div class="appreciation-image-wrap">
+        <img src="images/sarahsofee.png" alt="Sarah and Sofea" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <div class="image-placeholder-fallback" style="display:none;">Sarah & Sofea &lt;3</div>
+        </div>
+        <div class="appreciation-text-box">
+        <p>
+        To my dearest Sarah, thank you for being the most incredible best friend anyone could ever ask for. Through every ups and downs, chaotic assignment deadlines and spontaneous late-night laughs, you have been my constant anchor and safest space by always supporting me by my side. Thank you for your endless support, your patient listening ears and the beautiful energy you bring into my life every single day. I cherish all our shared secrets and unforgettable adventures, and I am so deeply grateful to grow alongside you. Here is to a lifetime of more coffee runs, inside jokes and unwavering friendship! Despite we just meet when we both first entered UiTM, I appreciate our connection and our closeness just because we are only roommate at first, now that we both become best friend there's nothing more I could've ask for. I'm so grateful having you as my friend.
+        </p>
+        </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Nurin Sofea. Created with Love.</p>
+    </footer>
+
+    <script>
+        // Toggle mobile responsive navigation drawer
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            });
+        });
+
+        // Audio Handler Logic
+        const bgAudio = document.getElementById('bg-music');
+        const audioIconBtn = document.getElementById('audio-icon-btn');
+        const playMusicTrigger = document.getElementById('play-music-trigger');
+
+        function toggleAudioState() {
+            if (bgAudio.paused) {
+                bgAudio.play().catch(err => console.log("Playback error:", err));
+            } else {
+                bgAudio.pause();
+            }
+        }
+
+        function playAndGoToSection(e) {
+            if (bgAudio.paused) {
+                bgAudio.play().then(() => {
+                    console.log("Audio playing via Section 2 Play Button!");
+                }).catch(error => {
+                    console.error("Audio block context issue:", error);
+                });
+            }
+        }
+
+        audioIconBtn.addEventListener('click', toggleAudioState);
+        playMusicTrigger.addEventListener('click', playAndGoToSection);
+    </script>
+</body>
+</html>

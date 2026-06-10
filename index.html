@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nurin Sofea's Website</title>
+    <!-- Google Fonts for that cute, whimsical Canva aesthetic -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Pacifico&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- Global Resets & Typography --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: #fffdf9;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Fixed Navigation Bar linking to separate interfaces */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 10px rgba(224, 150, 190, 0.15);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 12px 20px;
+        }
+
+        .logo {
+            font-family: 'Pacifico', cursive;
+            color: #e06da6;
+            font-size: 1.5rem;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 15px;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: #5181b8;
+            font-weight: 700;
+            font-size: 0.95rem;
+            padding: 8px 14px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links li a:hover {
+            background-color: #fff0f5;
+            color: #e06da6;
+        }
+
+        /* Mobile Hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: #e06da6;
+            border-radius: 2px;
+        }
+
+        /* --- Cursive Moving Text Marquee --- */
+        .marquee-container {
+            position: fixed;
+            top: 55px; /* Sits cleanly right under the navbar */
+            left: 0;
+            width: 100%;
+            background-color: #ffdceb;
+            padding: 6px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            z-index: 999;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .marquee-text {
+            display: inline-block;
+            font-family: 'Pacifico', cursive;
+            font-size: 1.1rem;
+            color: #ba6088;
+            animation: marquee 15s linear infinite;
+            padding-left: 100%;
+        }
+
+        @keyframes marquee {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-100%, 0, 0); }
+        }
+
+        /* --- Section 1: Hero (images/bgpic.jpeg.jpeg) --- */
+        .hero-section {
+            background-image: url('images/bgpic.jpeg.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            padding: 140px 20px 60px 20px; /* Accommodates marquee space */
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.15);
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-family: 'Pacifico', cursive;
+            font-size: 3.5rem;
+            color: #ff60ad;
+            text-shadow: 3px 3px 0px #fff, -1px -1px 0px #fff, 1px -1px 0px #fff, -1px 1px 0px #fff;
+            z-index: 2;
+            line-height: 1.3;
+        }
+
+        .hero-subtitle {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.8rem;
+            color: #4da6ff;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 0px #fff, -1px -1px 0px #fff, 1px -1px 0px #fff, -1px 1px 0px #fff;
+            z-index: 2;
+        }
+
+        .hero-section p {
+            z-index: 2;
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+            font-size: 1.2rem;
+        }
+
+        /* --- Section 2: About Part 1 (Yellow Panel) --- */
+        .about-yellow {
+            background-color: #fff385;
+            padding: 80px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .yellow-container {
+            max-width: 1000px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .yellow-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .yellow-text h2 {
+            font-family: 'Fredoka', sans-serif;
+            color: #1d63b8;
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+        }
+
+        .yellow-text ul {
+            list-style-type: square;
+            margin-left: 20px;
+            color: #615a1a;
+            font-weight: 700;
+        }
+
+        .polaroid-stack {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            height: 350px;
+        }
+
+        .polaroid {
+            background: white;
+            padding: 15px 15px 40px 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            border-radius: 4px;
+            width: 200px;
+            position: absolute;
+            transition: transform 0.3s;
+        }
+
+        .polaroid img {
+            width: 100%;
+            height: 170px;
+            object-fit: cover;
+        }
+
+        .polaroid.p1 { transform: rotate(-8deg) translateX(-40px); z-index: 1; }
+        .polaroid.p2 { transform: rotate(5deg) translateX(40px) translateY(-10px); z-index: 2; }
+        .polaroid:hover { z-index: 5; transform: scale(1.05) rotate(0deg); }
+
+        /* Cute Bow Ribbon Separator Line */
+        .ribbon-divider {
+            width: 100%;
+            height: 25px;
+            background-color: #fca6d1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 0.8rem;
+            letter-spacing: 5px;
+        }
+
+        /* --- Section 3: More About Me (Pink Panel with images/sofeehome3.png) --- */
+        .about-pink {
+            background-color: #fcaec7;
+            padding: 80px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .pink-container {
+            max-width: 1000px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        .stamp-frame {
+            background: white;
+            padding: 12px;
+            border: 6px dashed #e05380;
+            border-radius: 8px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            max-width: 450px;
+            flex: 1;
+        }
+
+        .stamp-frame img {
+            width: 100%;
+            border-radius: 4px;
+            display: block;
+            object-fit: cover;
+        }
+
+        .pink-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .pink-text h2 {
+            font-family: 'Fredoka', sans-serif;
+            color: #00b074;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .pink-text ul {
+            list-style-type: disc;
+            margin-left: 20px;
+            font-size: 1.2rem;
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        /* --- Section 4: Video Portal Grid Hub (videos/ and images/ paths) --- */
+        .video-nav-section {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            overflow: hidden;
+        }
+
+        .video-bg-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .video-bg-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .purple-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(159, 122, 196, 0.65);
+        }
+
+        .video-nav-section h2 {
+            font-family: 'Pacifico', cursive;
+            font-size: 2.3rem;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+            color: #fff;
+        }
+
+        /* Floating Polaroid Links Grid */
+        .portal-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            max-width: 850px;
+            width: 100%;
+            z-index: 2;
+        }
+
+        .portal-card {
+            background: white;
+            padding: 10px 10px 25px 10px;
+            border-radius: 4px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            text-decoration: none;
+            color: #333;
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .portal-card img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 2px;
+            margin-bottom: 12px;
+        }
+
+        .portal-card span {
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        .portal-card:hover {
+            transform: translateY(-8px) scale(1.04);
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            background-color: #ffdceb;
+            color: #ba6088;
+            font-weight: bold;
+        }
+
+        /* --- Responsive Styles --- */
+        @media (max-width: 768px) {
+            .marquee-container { top: 60px; }
+            .hero-section { padding-top: 160px; }
+            
+            .nav-links {
+                position: absolute;
+                top: 60px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 60px);
+                background-color: rgba(255,255,255,0.98);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 25px;
+                transition: 0.3s ease;
+            }
+
+            .nav-links.active { left: 0; }
+            .hamburger { display: flex; }
+            .yellow-container, .pink-container { flex-direction: column; text-align: center; }
+            .polaroid-stack { height: 260px; margin-top: 20px; }
+            .portal-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 480px) {
+            .portal-grid { grid-template-columns: 1fr; }
+            .hero-title { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+         <!-- Clicking returns directly to the top of the index page -->
+         <a href="#" class="logo">Nurin's Space</a>
+         <ul class="nav-links">
+           <li><a href="family.html">Family</a></li>
+           <li><a href="friends.html">Friends</a></li>
+           <li><a href="education.html">Education</a></li>
+           <li><a href="experience.html">Experience</a></li>
+           <li><a href="hobbies.html">Hobbies</a></li>
+           <li><a href="contact.html">Contact Me</a></li>
+         </ul>
+         <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+     </div>
+     </nav>
+
+    <!-- Moving Text Marquee Section -->
+    <div class="marquee-container">
+        <div class="marquee-text">
+          Nurin Sofea's Space &lt;3 Nurin Sofea's Space &lt;3 Nurin Sofea's Space &lt;3 Nurin Sofea's Space &lt;3 Nurin Sofea's Space &lt;3 Nurin Sofea's Space &lt;3
+        </div>
+    </div>
+
+    <!-- Section 1: Hero Banner -->
+    <header class="hero-section">
+        <h1 class="hero-title">Hello, Welcome to</h1>
+        <h2 class="hero-subtitle">Nurin Sofea's Website!</h2>
+        <p>A place where I share parts of my beautiful journey.</p>
+    </header>
+
+    <!-- Section 2: About Me (Yellow Canvas Block) -->
+    <section class="about-yellow">
+        <div class="yellow-container">
+        <div class="yellow-text">
+        <h2>Nice to meet you!<br>Here's a little bit about me...</h2>
+        <ul>
+        <li>My name is Nurin Sofea, and my nickname is Sofee. I am currently pursuing a Diploma in Library Informatics at Universiti Teknologi MARA (UiTM) Cawangan Kedah. As a student in this field, I am passionate about information management, digital resources and the role of technology in modern libraries.
+<br>
+<br>
+This website was developed as part of my coursework for IML254: Introduction to Web Content Management. The purpose of this assignment is to apply web content management concepts and showcase my ability to create and organize digital content through a personal website.
+<br>
+<br>
+Through this website, I would like to share information about myself, my educational background, family, friends, hobbies, experiences, contact information and other aspects of my personal journey. I hope you enjoy exploring my website and learning more about me.
+<br>
+<br>
+Thank you for visiting!   </li>
+        </ul>
+        </div>
+            <div class="polaroid-stack">
+                <div class="polaroid p1">
+                <img src="images/sofeehome.png" alt="Sofee Home Photo 1">
+                </div>
+                <div class="polaroid p2">
+                <img src="images/sofeehome2.png" alt="Sofee Home Photo 2">
+                </div>
+                </div>
+        </div>
+    </section>
+
+    <!-- Section 3: More About Me (Pink Canvas Block with images/sofeehome3.png) -->
+    <section class="about-pink">
+        <div class="pink-container">
+        <div class="stamp-frame">
+        <img src="images/sofeehome3.png" alt="More about me photo entry">
+        </div>
+        <div class="pink-text">
+        <h2>More about me</h2>
+        <ul>
+        <li>I would describe myself as a cheerful, friendly, and energetic person who enjoys making meaningful connections with others. I love exploring new experiences, meeting different people, and learning about things that spark my curiosity. As someone with an outgoing personality, I enjoy sharing ideas, having fun conversations, and creating memorable moments with the people around me.
+<br>
+<br>
+I am also a creative person who enjoys expressing myself through different interests and hobbies. I love listening to music, watching movies and dramas, trying new activities, and spending quality time with my family and friends. These simple moments bring me happiness and help me maintain a positive outlook on life.
+<br>
+<br>
+I believe that life is about continuous growth and self-discovery. Therefore, I always try to stay open-minded, embrace new opportunities, and challenge myself to learn and improve every day. Through every experience, I hope to become a better version of myself while staying true to who I am.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Video Portal Grid System -->
+    <section class="video-nav-section">
+        <div class="video-bg-container">
+        <video autoplay muted loop playsinline>
+        <source src="videos/videohome.mp4.mp4" type="video/mp4">
+        </video>
+        <div class="purple-overlay"></div>
+        </div>
+
+        <h2>Click to your next journey!</h2>
+
+        <div class="portal-grid">
+        <!-- Family Card -->
+        <a href="family.html" class="portal-card">
+        <img src="images/familyicon.jpeg" alt="Family Interface Link">
+        <span>Family</span>
+        </a>
+            
+         <!-- Friends Card -->
+         <a href="friends.html" class="portal-card">
+         <img src="images/friendicon.jpeg" alt="Friends Interface Link">
+         <span>Friends</span>
+         </a>
+            
+         <!-- Education Card -->
+         <a href="education.html" class="portal-card">
+         <img src="images/schoolicon.jpeg" alt="Education Interface Link">
+         <span>Education</span>
+         </a>
+            
+         <!-- Experience Card -->
+         <a href="experience.html" class="portal-card">
+         <img src="images/expicon.jpeg" alt="Experience Interface Link">
+         <span>Experiences</span>
+         </a>
+            
+         <!-- Hobbies Card -->
+         <a href="hobbies.html" class="portal-card">
+         <img src="images/hobbiesicon.jpeg" alt="Hobbies Interface Link">
+         <span>Hobbies</span>
+         </a>
+            
+         <!-- Contact Card -->
+         <a href="contact.html" class="portal-card">
+         <img src="images/contacticon.jpeg" alt="Contact Interface Link">
+         <span>Contact me</span>
+         </a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Nurin Sofea. Created with Love.</p>
+    </footer>
+
+    <script>
+        // Toggle mobile responsive navigation drawer
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        });
+        });
+    </script>
+</body>
+</html>

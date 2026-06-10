@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family - Nurin Sofea</title>
+    <!-- Google Fonts for that cute, whimsical Canva aesthetic -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Pacifico&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- Global Resets & Typography --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: #fffdf9;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Fixed Navigation Bar linking to separate interfaces */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 10px rgba(224, 150, 190, 0.15);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 12px 20px;
+        }
+
+        .logo {
+            font-family: 'Pacifico', cursive;
+            color: #e06da6;
+            font-size: 1.5rem;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 15px;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: #5181b8;
+            font-weight: 700;
+            font-size: 0.95rem;
+            padding: 8px 14px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        /* Highlight Family page style as active */
+        .nav-links li a.active-page {
+            background-color: #fff0f5;
+            color: #e06da6;
+            border: 1px dashed #e06da6;
+        }
+
+        .nav-links li a:hover {
+            background-color: #fff0f5;
+            color: #e06da6;
+        }
+
+        /* Mobile Hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: #e06da6;
+            border-radius: 2px;
+        }
+
+        /* --- Cursive Moving Text Marquee (Maintained Exactly) --- */
+        .marquee-container {
+            position: fixed;
+            top: 55px; /* Sits cleanly right under the navbar */
+            left: 0;
+            width: 100%;
+            background-color: #ffdceb;
+            padding: 6px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            z-index: 999;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .marquee-text {
+            display: inline-block;
+            font-family: 'Pacifico', cursive;
+            font-size: 1.1rem;
+            color: #ba6088;
+            animation: marquee 15s linear infinite;
+            padding-left: 100%;
+        }
+
+        @keyframes marquee {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-100%, 0, 0); }
+        }
+
+        /* --- Section 1: Family Hero Banner --- */
+        .family-hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Centers items vertically */
+            align-items: center; /* Centers items horizontally */
+            text-align: center;
+            padding: 160px 20px 80px 20px;
+            overflow: hidden;
+        }
+
+        /* Custom Family Background Image Frame */
+        .family-bg-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('images/bgfamily.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: -2;
+        }
+
+        /* Soft overlay tint to ensure headers remain clear and readable */
+        .family-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.25); 
+            z-index: -1;
+        }
+
+        .family-title {
+            font-family: 'Pacifico', cursive;
+            font-size: 3.5rem;
+            color: #e06da6;
+            text-shadow: 3px 3px 0px #fff, -1px -1px 0px #fff, 1px -1px 0px #fff, -1px 1px 0px #fff;
+            margin-bottom: 5px;
+            line-height: 1.2;
+        }
+
+        .family-subtitle {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.6rem;
+            color: #5181b8;
+            text-shadow: 2px 2px 0px #fff, -1px -1px 0px #fff;
+            margin-bottom: 30px;
+        }
+
+        /* Dead Center Graphic Layout Wrapper with subtle float effect */
+        .center-graphic-wrap {
+            max-width: 450px;
+            width: 100%;
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            filter: drop-shadow(0px 8px 20px rgba(224, 109, 166, 0.3));
+            animation: floatAnimation 4s ease-in-out infinite;
+        }
+
+        .center-graphic-wrap img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        @keyframes floatAnimation {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0px); }
+        }
+/* --- Section 2: Sage Green Scrapbook Panel --- */
+        .scrapbook-panel {
+            background-color: #a3c18b; /* Soft Sage Green Backdrop matching 1000198770.jpg */
+            padding: 100px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .scrapbook-container {
+            max-width: 1200px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        /* Left Side Text Stack Formatting */
+        .scrapbook-left {
+            flex: 1;
+            min-width: 280px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .scrapbook-heading {
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 700;
+            font-size: 3.4rem;
+            color: #b94242; /* Soft terracotta red tone matching 1000198770.jpg */
+            display: flex;
+            flex-direction: column; /* Stacked layout style mimicking reference file */
+            gap: 5px;
+            text-align: center;
+            line-height: 1.1;
+            letter-spacing: 1px;
+        }
+
+        /* Enforces absolute font and size consistency across all text elements */
+        .scrapbook-heading span {
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        /* Right Side Frame Wrap Adjustment */
+        .scrapbook-right {
+            flex: 1.6;
+            min-width: 340px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Replicating the notebook journal */
+        .journal-frame-wrapper {
+            width: 100%;
+            max-width: 680px;
+            border-radius: 20px;
+            background-color: transparent;
+            /* Drop shadow replicating the realistic depth found in the reference source design */
+            filter: drop-shadow(0px 16px 32px rgba(40, 60, 30, 0.35));
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.15);
+        }
+
+        .journal-frame-wrapper:hover {
+            transform: scale(1.02) translateY(-5px);
+        }
+
+        .collage-main-asset {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain;
+        }
+
+        /* --- Mobile Structural Adjustments --- */
+        @media (max-width: 768px) {
+            .scrapbook-panel {
+                padding: 60px 20px;
+            }
+            .scrapbook-container {
+                flex-direction: column;
+                gap: 35px;
+            }
+            .scrapbook-heading {
+                font-size: 2.6rem;
+            }
+            .journal-frame-wrapper {
+                max-width: 100%;
+            }
+        }
+/* --- Styles for Sections 3, 4, 5, & 6 --- */
+        .family-member-section {
+            background-color: #a3c18b; /* Maintained the same Sage Green from Section 2 */
+            padding: 80px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            min-height: auto;
+            border-bottom: 2px dashed rgba(255, 255, 255, 0.3);
+        }
+
+        /* Center-Top Transparent Beige Sub-Navigation Bar */
+        .family-sub-nav {
+            background-color: rgba(245, 235, 220, 0.85); /* Gorgeous semi-transparent beige */
+            backdrop-filter: blur(8px);
+            padding: 10px 25px;
+            border-radius: 40px;
+            display: flex;
+            gap: 25px;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 24px rgba(40, 60, 30, 0.15);
+            margin-bottom: 60px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            position: sticky;
+            top: 110px; /* Sits comfortably below your main portal text banner */
+            z-index: 90;
+        }
+
+        .sub-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #556b2f;
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 600;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 15px;
+        }
+
+        .sub-nav-item img {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+            margin-bottom: 4px;
+            transition: transform 0.3s ease;
+        }
+
+        .sub-nav-item:hover img {
+            transform: scale(1.18) translateY(-2px);
+        }
+
+        .sub-nav-item:hover {
+            color: #b94242;
+        }
+
+        /* Main Section layout */
+        .member-container {
+            max-width: 600px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+
+        /* Whimsical Scrapbook Polaroid Frame Design */
+        .polaroid-frame {
+            background-color: #ffffff;
+            padding: 18px 18px 35px 18px;
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.15), 0 10px 10px rgba(0, 0, 0, 0.1);
+            transform: rotate(-1.5deg); /* Slight natural rotation for a real photo look */
+            transition: transform 0.4s ease;
+            width: 100%;
+            max-width: 380px;
+        }
+
+        /* Alternate polaroid tilts subtly for a natural scrapbook look */
+        #section4 .polaroid-frame, #section6 .polaroid-frame {
+            transform: rotate(2deg);
+        }
+
+        .polaroid-frame:hover {
+            transform: rotate(0deg) scale(1.03);
+        }
+
+        .polaroid-frame img {
+            width: 100%;
+            height: 340px;
+            object-fit: cover;
+            border: 1px solid #eee;
+        }
+
+        .polaroid-caption {
+            font-family: 'Pacifico', cursive;
+            font-size: 1.4rem;
+            color: #4a5d3b;
+            text-align: center;
+            margin-top: 18px;
+        }
+
+        /* Description box placed cleanly underneath image */
+        .member-description-box {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 16px;
+            padding: 25px 30px;
+            width: 100%;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+            border-left: 5px solid #b94242; /* Colored accent bar */
+            text-align: left;
+        }
+
+        .member-description-box h3 {
+            font-family: 'Fredoka', sans-serif;
+            color: #b94242;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .member-description-box p {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #444;
+            font-weight: 600;
+        }
+
+        /* --- Responsive Tweaks --- */
+        @media (max-width: 768px) {
+            .family-sub-nav {
+                top: 120px;
+                padding: 8px 15px;
+                gap: 15px;
+            }
+            .sub-nav-item img {
+                width: 38px;
+                height: 38px;
+            }
+            .polaroid-frame img {
+                height: 280px;
+            }
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            background-color: #ffdceb;
+            color: #ba6088;
+            font-weight: bold;
+        }
+
+        /* --- Responsive Styles --- */
+        @media (max-width: 768px) {
+            .marquee-container { top: 60px; }
+            .family-hero { padding-top: 180px; }
+            
+            .nav-links {
+                position: absolute;
+                top: 60px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 60px);
+                background-color: rgba(255,255,255,0.98);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 25px;
+                transition: 0.3s ease;
+            }
+
+            .nav-links.active { left: 0; }
+            .hamburger { display: flex; }
+            .family-title { font-size: 2.6rem; }
+            .family-subtitle { font-size: 1.2rem; }
+            .center-graphic-wrap { max-width: 320px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+        <a href="#" class="logo">Nurin's Space</a>
+        <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="family.html" class="active-page">Family</a></li>
+        <li><a href="friends.html">Friends</a></li>
+        <li><a href="education.html">Education</a></li>
+        <li><a href="experience.html">Experience</a></li>
+        <li><a href="hobbies.html">Hobbies</a></li>
+        <li><a href="contact.html">Contact Me</a></li>
+        </ul>
+        <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+        </div>
+        </div>
+    </nav>
+
+    <!-- Moving Text Marquee Section (Maintained styling and phrases) -->
+    <div class="marquee-container">
+        <div class="marquee-text">
+            Nurin Sofea's Space &lt;3 Nurin Sofea's Space &lt;3 Nurin Sofea's Space &lt;3 Nurin Sofea's Space &lt;3 Nurin Sofea's Space &lt;3 Nurin Sofea's Space &lt;3
+        </div>
+    </div>
+
+    <!-- Section 1: Family Hero Banner -->
+    <header class="family-hero">
+        <!-- Background Asset Image Frame -->
+        <div class="family-bg-container"></div>
+        
+        <h1 class="family-title">My Family</h1>
+        <h2 class="family-subtitle">The center of my world and my greatest blessing!</h2>
+        
+        <!-- Centered Core Graphic Asset -->
+        <div class="center-graphic-wrap">
+        <img src="images/familyh2.png" alt="Family Animation Graphic Asset">
+        </div>
+    </header>
+<!-- Section 2: Scrapbook Memory Showcase -->
+    <section class="scrapbook-panel">
+    <div class="scrapbook-container">
+            
+    <!-- Left Side Title Layout-->
+    <div class="scrapbook-left">
+    <h2 class="scrapbook-heading">
+    <span>MEET</span>
+    <span>MY</span>
+    <span>FAMILY</span>
+    <span>MEMBERS</span>
+    </h2>
+    </div>
+
+            <!-- Right Side Graphic Asset -->
+            <div class="scrapbook-right">
+            <div class="journal-frame-wrapper">
+            <!-- Your main family collage asset acting as the journal spread centerpiece -->
+            <img src="images/familycol.png" alt="Family Scrapbook Collage Layout" class="collage-main-asset">
+            </div>
+            </div>
+
+        </div>
+    </section>       
+
+    <!-- SECTION 3: DAD (BAPAK)                     -->
+    <section id="section3" class="family-member-section">
+        
+        <!-- Section-Specific Transparent Beige Sub-Navbar -->
+        <nav class="family-sub-nav">
+        <a href="#section3" class="sub-nav-item active-member">
+        <img src="images/dadicon.png" alt="Dad">
+        <span>Dad</span>
+        </a>
+        <a href="#section4" class="sub-nav-item">
+        <img src="images/sisicon.png" alt="Sister">
+        <span>Sister</span>
+        </a>
+        <a href="#section5" class="sub-nav-item">
+        <img src="images/momicon.png" alt="Mom">
+        <span>Mom</span>
+        </a>
+        <a href="#section6" class="sub-nav-item">
+        <img src="images/meicon.png" alt="Me">
+        <span>Me</span>
+        </a>
+        </nav>
+
+        <div class="member-container">
+            <!-- Polaroid Frame Image Block -->
+            <div class="polaroid-frame">
+            <img src="images/bapak.jpg" alt="My Dad">
+            <div class="polaroid-caption">My Hero, Bapak</div>
+            </div>
+
+            <!-- Description Box Underneath -->
+            <div class="member-description-box">
+            <h3>My Father</h3>
+             <ul class="bullets">
+             <li>This is my father, Mr. Suziyana Bin Mohd. Zamri. He is 50 years old. </li>
+             <li>My father is an aircraft technician.</li>
+             <li>My father favourite color is navy green.</li>
+             <li>Throughout my life, my father has supported me in my education and encouraged me to pursue my goals with confidence. Whenever I face challenges, he motivates me to stay strong and never give up.</li>
+             </ul>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: SISTER (SISTUR)                 -->
+    <!-- Section-Specific Transparent Beige Sub-Navbar -->
+        <nav class="family-sub-nav">
+        <a href="#section3" class="sub-nav-item active-member">
+        <img src="images/dadicon.png" alt="Dad">
+        <span>Dad</span>
+        </a>
+        <a href="#section4" class="sub-nav-item">
+        <img src="images/sisicon.png" alt="Sister">
+        <span>Sister</span>
+        </a>
+        <a href="#section5" class="sub-nav-item">
+        <img src="images/momicon.png" alt="Mom">
+        <span>Mom</span>
+        </a>
+        <a href="#section6" class="sub-nav-item">
+        <img src="images/meicon.png" alt="Me">
+        <span>Me</span>
+        </a>
+        </nav>
+
+    <section id="section4" class="family-member-section">
+        <div class="member-container">
+        <!-- Polaroid Frame Image Block -->
+        <div class="polaroid-frame">
+        <img src="images/sistur.jpg" alt="My Sister">
+        <div class="polaroid-caption">My Sister</div>
+        </div>
+
+        <!-- Description Box Underneath -->
+        <div class="member-description-box">
+        <h3>My Sister</h3>
+        <ul class="bullets">
+             <li>This is my siter, Miss Nurina Fatihah Binti Suziyana. She is 23 years old. </li>
+             <li>My sister is currently working as internship marketing.</li>
+             <li>My sister favourite color is pink.</li>
+             <li>She is someone I can talk to, laugh with and rely on whenever I need advice or encouragement. Her understanding personality and positive attitude make her a wonderful sister and friend.</li>
+        </ul>
+
+        </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5: MOM (MOMY)                     -->
+
+    <section id="section5" class="family-member-section">
+        <div class="member-container">
+        <!-- Polaroid Frame Image Block -->
+        <div class="polaroid-frame">
+        <img src="images/momy.jpg" alt="My Mom">
+        <div class="polaroid-caption">My Mommy</div>
+        </div>
+
+        <!-- Description Box Underneath -->
+        <div class="member-description-box">
+        <h3>My Mother</h3>
+        <ul class="bullets">
+             <li>This is my mother, Miss Khatijah Binti Mat Baseri. She is 48 years old. </li>
+             <li>My mother is working as senior business executive.</li>
+             <li>My mother favourite color is soft yellow.</li>
+             <li>My mother is always there to encourage me when I face difficulties and celebrate my achievements, no matter how big or small. Her words of wisdom, kindness and understanding have taught me many valuable life lessons. I admire her ability to care for our family while remaining strong and compassionate in every situation.</li>
+        </ul>
+
+         </div>
+        </div>
+    </section>
+
+    <!-- SECTION 6: ME                             -->
+  
+    <section id="section6" class="family-member-section">
+        <div class="member-container">
+        <!-- Polaroid Frame Image Block -->
+        <div class="polaroid-frame">
+        <img src="images/me.jpeg" alt="Me">
+        <div class="polaroid-caption">Nurin Sofea</div>
+        </div>
+
+        <!-- Description Box Underneath -->
+        <div class="member-description-box">
+        <h3>Me</h3>
+        <ul class="bullets">
+             <li>This is me, Miss Nurin Sofea Binti Suziyana. I am 21 years old. </li>
+             <li>I am a student in UiTM Cawangan Kedah, currently persuing Diploma of Library Informatics.</li>
+             <li>My favourite color is white.</li>
+             <li>I would describe myself as an energetic and open-minded person who loves spending time with the people I care about. Whether it is sharing stories with friends, making memories with my family, or trying something new, I appreciate the little moments that make life meaningful.</li>
+        </ul>
+
+        </div>
+        </div>
+    </section>
+    <footer>
+        <p>&copy; 2026 Nurin Sofea. Created with Love.</p>
+    </footer>
+
+    <script>
+        // Toggle mobile responsive navigation drawer
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,334 @@
+/* ==========================================================================
+   GLOBAL RESET & ENVIRONMENT PRESETS
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Quicksand', sans-serif;
+    background-color: #fffdf9;
+    color: #333;
+    overflow-x: hidden;
+}
+
+/* ==========================================================================
+   NAVIGATION BAR (SYSTEM UNIFORMITY)
+   ========================================================================== */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 10px rgba(180, 150, 224, 0.15);
+    z-index: 1000;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 12px 20px;
+}
+
+.logo {
+    font-family: 'Pacifico', cursive;
+    color: #e06da6;
+    font-size: 1.5rem;
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 15px;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: #5181b8;
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 8px 14px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.nav-links li a.active-page {
+    background-color: #f3ebff;
+    color: #9b6bc7; /* Accent purple for the active tab state */
+    border: 1px dashed #9b6bc7;
+}
+
+.nav-links li a:hover {
+    background-color: #f3ebff;
+    color: #9b6bc7;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 4px;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background-color: #9b6bc7;
+    border-radius: 2px;
+}
+
+/* ==========================================================================
+   MARQUEE SECTION
+   ========================================================================== */
+.marquee-container {
+    position: fixed;
+    top: 55px;
+    left: 0;
+    width: 100%;
+    background-color: #ffdceb;
+    padding: 6px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    z-index: 999;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.marquee-text {
+    display: inline-block;
+    font-family: 'Pacifico', cursive;
+    font-size: 1.1rem;
+    color: #ba6088;
+    animation: marquee 15s linear infinite;
+    padding-left: 100%;
+}
+
+@keyframes marquee {
+    0% { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(-100%, 0, 0); }
+}
+
+/* ==========================================================================
+   SECTION 1: EXPERIENCE HERO BANNER (bgexp.jpeg)
+   ========================================================================== */
+.experience-hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    padding: 140px 20px 60px 20px;
+}
+
+.experience-bg-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('images/bgexp.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -2;
+}
+
+/* Clear white tint overlay sheet for legibility */
+.experience-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.3);
+    z-index: -1;
+}
+
+.center-experience-graphic {
+    max-width: 450px;
+    width: 100%;
+    filter: drop-shadow(0px 12px 28px rgba(155, 107, 199, 0.4));
+    animation: smoothFloat 4s ease-in-out infinite;
+}
+
+.center-experience-graphic img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+@keyframes smoothFloat {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+    100% { transform: translateY(0px); }
+}
+
+/* ==========================================================================
+   SECTION 2: SOFT PURPLE SLIDER OVERVIEW
+   ========================================================================== */
+.experience-showcase-panel {
+    background-color: #f2e9fc; /* Soft Purple Background Canvas */
+    padding: 80px 0 100px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.slider-instruction {
+    font-family: 'Fredoka', sans-serif;
+    color: #8a5cb3;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 25px;
+    background-color: #ffffff;
+    padding: 6px 18px;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(155, 107, 199, 0.1);
+}
+
+/* Horizontal Scroll Slider Track */
+.experience-slider {
+    width: 100%;
+    display: flex;
+    gap: 30px;
+    overflow-x: auto;
+    padding: 20px 40px;
+    scroll-behavior: smooth;
+    /* Custom scrollbar properties for modern browsers */
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 transparent;
+}
+
+/* Hide scrollbar defaults for cleaner aesthetic on luxury browsers */
+.experience-slider::-webkit-scrollbar {
+    height: 8px;
+}
+.experience-slider::-webkit-scrollbar-track {
+    background: transparent;
+}
+.experience-slider::-webkit-scrollbar-thumb {
+    background-color: rgba(155, 107, 199, 0.3);
+    border-radius: 10px;
+}
+
+/* Card Module Presets */
+.experience-card {
+    flex: 0 0 350px; /* Locks structural layout card size values */
+    background-color: #ffffff;
+    border-radius: 24px;
+    box-shadow: 0 10px 25px rgba(155, 107, 199, 0.15);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+.experience-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 35px rgba(155, 107, 199, 0.3);
+}
+
+/* Upper Image Block Frame */
+.card-image-wrapper {
+    width: 100%;
+    height: 240px;
+    overflow: hidden;
+    background-color: #fdfbf7;
+}
+
+.card-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.experience-card:hover .card-image-wrapper img {
+    transform: scale(1.06);
+}
+
+/* Lower Description Box Area */
+.card-description-box {
+    padding: 25px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    background-color: #ffffff;
+    border-top: 3px dashed #f2e9fc;
+}
+
+.card-description-box h3 {
+    font-family: 'Fredoka', sans-serif;
+    color: #9b6bc7; /* Rich matching purple heading */
+    font-size: 1.35rem;
+    margin-bottom: 10px;
+}
+
+.card-description-box p {
+    font-family: 'Quicksand', sans-serif;
+    color: #555;
+    font-size: 0.98rem;
+    line-height: 1.6;
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   FOOTER FRAME
+   ========================================================================== */
+footer {
+    text-align: center;
+    padding: 25px;
+    background-color: #ffdceb;
+    color: #ba6088;
+    font-weight: bold;
+}
+
+/* ==========================================================================
+   MOBILE BREAKPOINT RESPONSIVENESS
+   ========================================================================== */
+@media (max-width: 768px) {
+    .marquee-container { top: 60px; }
+    .experience-hero { padding-top: 160px; }
+    
+    .nav-links {
+        position: absolute;
+        top: 60px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 60px);
+        background-color: rgba(255,255,255,0.98);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 25px;
+        transition: 0.3s ease;
+    }
+
+    .nav-links.active { left: 0; }
+    .hamburger { display: flex; }
+    .center-experience-graphic { max-width: 300px; }
+
+    .experience-slider {
+        padding: 10px 20px;
+        gap: 20px;
+    }
+
+    .experience-card {
+        flex: 0 0 290px; /* Scales card proportions beautifully on smaller viewports */
+    }
+}
